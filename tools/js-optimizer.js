@@ -7781,6 +7781,7 @@ function JSDCE(ast) {
   }
   function cleanUp(ast, name) {
     traverse(ast, function(node, type) {
+      if (node.quoted) return;
       if (type === 'defun' && node[1] === name) return emptyNode();
       if (type === 'defun' || type === 'function') return null; // do not enter other scopes
       if (type === 'var') {
@@ -7795,6 +7796,7 @@ function JSDCE(ast) {
     return ast;
   }
   traverse(ast, function(node, type) {
+    if (node.quoted) return;
     if (type === 'var') {
       node[1].forEach(function(varItem, j) {
         var name = varItem[0];
@@ -7816,6 +7818,7 @@ function JSDCE(ast) {
       ensureData(scopes[scopes.length-1], node[1]).use = 1;
     }
   }, function(node, type) {
+    if (node.quoted) return;
     if (type === 'defun' || type === 'function') {
       var scope = scopes.pop();
       for (name in scope) {
