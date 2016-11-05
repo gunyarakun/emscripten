@@ -1836,6 +1836,8 @@ int f() {
        ['splitMemory']),
       (path_from_root('tests', 'optimizer', 'JSDCE.js'), open(path_from_root('tests', 'optimizer', 'JSDCE-output.js')).read(),
        ['JSDCE']),
+      (path_from_root('tests', 'optimizer', 'JSDCE-reservedWordsInObjectKeys.js'), open(path_from_root('tests', 'optimizer', 'JSDCE-reservedWordsInObjectKeys-output.js')).read(),
+       ['JSDCE']),
     ]:
       print input, passes
 
